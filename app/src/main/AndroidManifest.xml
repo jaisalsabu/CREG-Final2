@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.msg91.sendotp.sample">
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/MyMaterialTheme"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup">
+        <activity android:name=".Admnlogin" />
+        <activity android:name=".profileact" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity
+            android:name=".SplashScreen"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".VerificationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".MainActivityforgot" />
+        <activity android:name=".adminview" />
+        <activity android:name=".VerificationActivityforgot" />
+        <activity android:name=".BirthCertficate" />
+        <activity android:name=".DeathCertificate" />
+        <activity android:name=".forgotpassword" />
+        <activity android:name=".IncomeTax" />
+        <activity android:name=".Login" />
+        <activity android:name=".optionspage" />
+        <activity android:name=".Registration" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Token" />
+        <activity android:name=".Trackstat" />
+        <activity android:name=".Votersid" />
+
+        <meta-data
+            android:name="sendotp.key"
+            android:value="@string/sendotp_key" />
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_live_VswH6pBLA139BJ" />
+    </application>
+
+</manifest>
