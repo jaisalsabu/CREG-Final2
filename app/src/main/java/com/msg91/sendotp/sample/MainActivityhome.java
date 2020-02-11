@@ -1,6 +1,5 @@
 package com.msg91.sendotp.sample;
 
-
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,9 +32,10 @@ SharedPreferences sh;
         setSupportActionBar(toolbar);
         sh=getSharedPreferences("Official",MODE_PRIVATE);
         tabLayout = findViewById(R.id.tablayout);
-        tabChats = findViewById(R.id.tabChats2);
+        //tabChats = findViewById(R.id.tabChats);
 SharedPreferences.Editor e=sh.edit();
 e.putBoolean("ph",true);
+
 e.apply();
         viewPager = findViewById(R.id.viewPager);
 

@@ -1,19 +1,20 @@
 package com.msg91.sendotp.sample;
 
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -32,68 +33,49 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static android.content.Context.MODE_PRIVATE;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class StatusFragment extends AppCompatActivity {
+public class StatusFragment extends Fragment {
 View root;
     List<Cheque> productList;
 SwipeRefreshLayout s;
-    //the recyclerview
     RecyclerView recyclerView;
 SwipeRefreshLayout swipe;
     SharedPreferences sh;
-    Chequeadapter adapter;
-    EditText search;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
          root= inflater.inflate(R.layout.fragment_status, container, false);
         loadProducts();
         recyclerView = root.findViewById(R.id.recylcerViewc);
         recyclerView.setHasFixedSize(true);
-        search=root.findViewById(R.id.editText);
-        search.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                filter(s.toString());
-            }
-        });
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         swipe=root.findViewById(R.id.swiperefresh);
-        sh=getApplicationContext().getSharedPreferences("Official",MODE_PRIVATE);
+        sh=getActivity().getSharedPreferences("Official",MODE_PRIVATE);
         productList = new ArrayList<>();
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 productList.clear();
                 loadProducts();
+
+
+
+
+
+
+
             }
         });
         return root;
     }
 
     private void loadProducts() {
-
-        /*
-         * Creating a String Request
-         * The request type is GET defined by first parameter
-         * The URL is defined in the second parameter
-         * Then we have a Response Listener and a Error Listener
-         * In response listener we will get the JSON response as a String
-         * */
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://hastalavistaresto.000webhostapp.com/civilregistry/cregret.php",
                 new Response.Listener<String>() {
                     @Override
@@ -115,11 +97,13 @@ swipe.setRefreshing(false);
                                         product.getString("Trackid"),
                                         product.getString("FORM"),
                                         product.getString("Status")
+
+
                                 ));
                             }
 
 
-                             adapter = new Chequeadapter(getApplicationContext(), productList);
+                            Chequeadapter adapter = new Chequeadapter(getActivity(), productList);
                             adapter.notifyDataSetChanged();
                             recyclerView.setAdapter(adapter);
 
@@ -152,20 +136,9 @@ swipe.setRefreshing(false);
         };
 
         //Adding the string request to the queue
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(stringRequest);
     }
-    private void filter(String text) {
-        ArrayList<Cheque> filteredList = new ArrayList<>();
 
-        for (Cheque item : productList) {
-            if (item.getTrackid().toLowerCase().contains(text.toLowerCase())||item.getForm().toLowerCase().contains(text.toLowerCase())||item
-                    .getStatus().toLowerCase().contains(text.toLowerCase())) {
-                filteredList.add(item);
-            }
-        }
-
-        adapter.filterList(filteredList);
-    }
     }
 

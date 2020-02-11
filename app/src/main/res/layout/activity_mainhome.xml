@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-android:background="@color/colorAccent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
@@ -12,7 +11,7 @@ android:background="@color/colorAccent"
       android:id="@+id/toolbar"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="@drawable/gradient_bg_white"
+      android:background="@color/colorAccent"
       android:minHeight="?attr/actionBarSize"
       android:theme="?attr/actionBarTheme"
       app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
@@ -22,21 +21,15 @@ android:background="@color/colorAccent"
       android:id="@+id/tablayout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="@drawable/gradient_bg_white"
-      app:tabSelectedTextColor="@color/colorAccent"
+      android:background="@color/colorAccent"
+      app:tabSelectedTextColor="@android:color/white"
       app:tabTextColor="@android:color/black">
 
     <android.support.design.widget.TabItem
         android:id="@+id/tabChats2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="BOOK" />
-
-    <android.support.design.widget.TabItem
-        android:id="@+id/tabChats"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CANCEL" />
+        android:text="PRODUCT" />
 
 
   </android.support.design.widget.TabLayout>

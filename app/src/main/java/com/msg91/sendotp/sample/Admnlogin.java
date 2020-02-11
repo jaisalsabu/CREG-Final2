@@ -47,7 +47,7 @@ Button btbtn;
 //If we are getting success from server
                                     if (response.equals("Success")) {
                                         Toast.makeText(Admnlogin.this,"Logged in Succesfully", Toast.LENGTH_LONG).show();
-                                        Intent ii = new Intent(getApplicationContext(),adminview.class);
+                                        Intent ii = new Intent(getApplicationContext(),MainActivityhome.class);
                                         startActivity(ii);
                                     }
                                     else

@@ -40,6 +40,7 @@
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity android:name=".MainActivityforgot" />
         <activity android:name=".adminview" />
+        <activity android:name=".MainActivityhome"/>
         <activity android:name=".VerificationActivityforgot" />
         <activity android:name=".BirthCertficate" />
         <activity android:name=".DeathCertificate" />

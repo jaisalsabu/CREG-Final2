@@ -60,11 +60,4 @@ holder.tso.setText(cheque.getStatus());
         }
 
     }
-    public void filterList(ArrayList<Cheque> filteredList) {
-        productList = filteredList;
-        notifyDataSetChanged();
-    }
-
-
-
 }
